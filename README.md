@@ -66,7 +66,7 @@ first symbol you see should be the TERMID.
 o 567: The total number of occurrences of the term in the entire corpus
 o 315: The total number of documents in which the term appears
 
-Part 3: Reading the index
+### Part 3: Reading the index
 Now that you have an inverted index of the corpus, you'll want to be able to do something with
 it. This is mostly left for the next assignment. For now, we will just write the code to pull up
 some statistics from the index. Write a program which implements the following command line
