@@ -36,3 +36,44 @@ One line of this file contains all the positions of a single token in a single
 document. Each line should contain a DOCID, a TERMID, and a list of all the
 positions of that term in that document (the first term has position 1, the second
 has position 2, etc.). The DOCID, TERMID, and positions should be separated by
+tabs, as follows:
+1234\t567\t1\t3\t12\t42
+
+Part 2: Inverting the index
+The final steps in index construction are inverting the index and preparing for fast random access
+to terms' inverted lists. Write a program which reads doc_index.txt to produce the following
+files.
+ term_index.txt – An inverted index containing the file position for each occurrence of
+each term in the collection. Each line should contain the complete inverted list for a
+single term. That is, it should contain a TERMID followed by a list of
+DOCID:POSITION values. However, in order to support more efficient compression you
+must apply delta encoding to the inverted list. The first DOCID for a term and the first
+POSITION for a document will be stored normally. Subsequent values should be stored
+as the offset from the prior value.
+Instead of encoding an inverted list like this:
+567\t1234:9\t1234:13\t1240:3\t1240:7
+you should encode it like this:
+567\t1234:9\t0:4\t6:3\t0:4
+Note that in order to do this, your DOCIDs and POSITIONs must be sorted in ascending
+order.
+ term_info.txt – A file that provides fast access time to the inverted list for any term in
+your index, and also provides extra metadata for the term. Each line of this file should
+contain a TERMID followed by a tab-separated list of properties:
+567\t1542\t567\t315
+o 1542: The offset in bytes to the beginning of the line containing the inverted list
+for that term in term_index.txt. If you jump to this location and read one line, the
+first symbol you see should be the TERMID.
+o 567: The total number of occurrences of the term in the entire corpus
+o 315: The total number of documents in which the term appears
+
+Part 3: Reading the index
+Now that you have an inverted index of the corpus, you'll want to be able to do something with
+it. This is mostly left for the next assignment. For now, we will just write the code to pull up
+some statistics from the index. Write a program which implements the following command line
+interface. Your program must not scan the inverted index linearly; it must look up the offset in
+term_info.txt and jump straight to the correct inverted list.
+Keep in mind as you design this program that you will be reusing much of this code in the next
+assignment.
+You can call the program anything you like, and in Java your command will look slightly
+different. Note that the values in the output examples below are made up.
+Passing just --doc DOCNAME will list the following document information:
