@@ -1,9 +1,9 @@
 # Search-Engine
 ### Overview
-In this assignment, you will write an indexer and use it to index a collection of documents. In the
-next assignment, you will create a ranker that uses your index to process queries. If you combine
-these two assignments, you will have constructed a simple search engine.
-You will write three programs:
+In this assignment, we will write an indexer and use it to index a collection of documents. In the
+next assignment, we will create a ranker that uses your index to process queries. If you combine
+these two assignments, we will have constructed a simple search engine.
+we will write three programs:
 - A tokenizer, which reads a document collection and creates documents containing
 indexable tokens
 - An indexer, which reads a collection of tokenized documents and constructs an inverted
