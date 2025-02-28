@@ -39,11 +39,11 @@ has position 2, etc.). The DOCID, TERMID, and positions should be separated by
 tabs, as follows:
 1234\t567\t1\t3\t12\t42
 
-Part 2: Inverting the index
+### Part 2: Inverting the index
 The final steps in index construction are inverting the index and preparing for fast random access
 to terms' inverted lists. Write a program which reads doc_index.txt to produce the following
 files.
- term_index.txt – An inverted index containing the file position for each occurrence of
+- term_index.txt – An inverted index containing the file position for each occurrence of
 each term in the collection. Each line should contain the complete inverted list for a
 single term. That is, it should contain a TERMID followed by a list of
 DOCID:POSITION values. However, in order to support more efficient compression you
@@ -56,7 +56,7 @@ you should encode it like this:
 567\t1234:9\t0:4\t6:3\t0:4
 Note that in order to do this, your DOCIDs and POSITIONs must be sorted in ascending
 order.
- term_info.txt – A file that provides fast access time to the inverted list for any term in
+- term_info.txt – A file that provides fast access time to the inverted list for any term in
 your index, and also provides extra metadata for the term. Each line of this file should
 contain a TERMID followed by a tab-separated list of properties:
 567\t1542\t567\t315
